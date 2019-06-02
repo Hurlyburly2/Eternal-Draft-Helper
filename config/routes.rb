@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :homes, only: [:index, :create]
-  resources :images, only: [:create]
+  resources :screenshots, only: [:create]
 end
