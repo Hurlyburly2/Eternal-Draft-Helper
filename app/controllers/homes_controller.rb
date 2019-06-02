@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    @image
+    @image = Image.new
   end
   
   def create 
