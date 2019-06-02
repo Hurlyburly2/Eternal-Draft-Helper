@@ -1,4 +1,8 @@
-<p>
-  Modify me in `app/views/homes/index.html.erb` or change the root directive in
-  `config/routes.rb`
-</p>
+<div class="image-address-form">
+  <h1>Enter Local Image Address</h1>
+  <%= form_for @image do |f| %>
+    <%= f.file_field :picture %>
+    
+    <%= f.submit %>
+  <% end %>
+</div>
