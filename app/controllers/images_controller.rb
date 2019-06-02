@@ -1,9 +1,9 @@
 class HomesController < ApplicationController
   def index
-    @image = ""
+    
   end
   
-  def post 
+  def create 
     
   end
 end
