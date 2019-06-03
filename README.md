@@ -1,24 +1,7 @@
-# README
+<h2>Eternal/MTG: Arena Draft Helper</h2>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h3>In Progress...</h3>
+App that will take an upload of a screenshot from an open draft pack, then uses Google Vision API to parse text from the image, pulls out card names, and compares them with various tier lists to rate which cards in your draft pack are best/worst.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Current Functionality:
+Takes an image upload and uses Google Vision API to pull text from it.
