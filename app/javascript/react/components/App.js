@@ -1,7 +1,11 @@
 import React from 'react'
 
+import FormTestComponent from './FormTestComponent'
+
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <FormTestComponent />
+  )
 }
 
 export default App
