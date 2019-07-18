@@ -1,7 +1,14 @@
 import React from 'react'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+
+import FormTestComponent from '../containers/FormTestContainer'
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <Router history={browserHistory}>
+      <Route path = '/' component={FormTestComponent} />
+    </Router>
+  )
 }
 
 export default App
