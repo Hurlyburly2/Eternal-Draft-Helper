@@ -12,5 +12,7 @@
 
 <h3>Current Functionality:</h3>
 <ul>
-  <li>Takes an image upload and uses Google Vision API to pull text from it.</li>
+  <li>JavaScript image uploader implemented in React</li>
+  <li>Image is sent by Rails back-end to Google Vision API</li>
+  <li>Text is extracted from image and needs to be processed and matched to cards</li>
 </ul>
