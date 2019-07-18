@@ -4,13 +4,25 @@ import { Link } from 'react-router'
 class FormTestContainer extends Component {  
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  
+  handleSubmit(event) {
+    debugger
+    event.preventDefault()
   }
   
   render() {
+    let handleSubmitForm = () => {
+      this.submitForm();
+    }
+    
     return(  
       <div>
-         <form id="my_form">
+         <form id="my_form" onSubmit={this.handleSubmit}>
           <input type="file" 
                  name="image" 
                  id="image_upload" 
