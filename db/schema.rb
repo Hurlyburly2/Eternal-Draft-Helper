@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_02_023049) do
+ActiveRecord::Schema.define(version: 2019_07_19_195743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_sets", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "card_name", null: false
+    t.string "image_url"
+    t.bigint "card_set_id"
+    t.string "small_image_url"
+    t.index ["card_set_id"], name: "index_cards_on_card_set_id"
+  end
+
+  create_table "rating_systems", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "card_set_id"
+    t.index ["card_set_id"], name: "index_rating_systems_on_card_set_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating", null: false
+    t.bigint "card_id"
+    t.bigint "rating_id"
+    t.index ["card_id"], name: "index_ratings_on_card_id"
+    t.index ["rating_id"], name: "index_ratings_on_rating_id"
+  end
 
   create_table "screenshots", force: :cascade do |t|
     t.string "url"
