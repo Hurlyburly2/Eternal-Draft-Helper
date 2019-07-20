@@ -64,6 +64,7 @@ class FormTestContainer extends Component {
     
     return(  
       <div>
+        <img src = "https://img.scryfall.com/cards/normal/front/6/4/64d9c182-cbb3-4791-90dd-0e533ddeebda.jpg?1561080376" />
          <form id="my_form" onSubmit={this.handleSubmit}>
           <input type="file" 
                  name="image" 
