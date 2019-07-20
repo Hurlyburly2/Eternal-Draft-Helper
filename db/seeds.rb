@@ -21,14 +21,15 @@ m20_sources.each do |source|
   m20_cards += parsed_response["data"]
 end
 
-Card_set.create(name: "M20")
+CardSet.create(name: "M20")
 m20_cardset = CardSet.find_by(name: "M20")
 
-binding.pry
-
 m20_cards.each do |card|
-  colors = card["colors"].join('')
+  colors = ""
+  if card["colors"].length > 0
+    colors = card["colors"].join('')
+  else
+    colors = "X"
+  end
   Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
 end
-
-binding.pry
