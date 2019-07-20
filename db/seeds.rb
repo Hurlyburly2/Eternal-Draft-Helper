@@ -22,9 +22,13 @@ m20_sources.each do |source|
 end
 
 Card_set.create(name: "M20")
+m20_cardset = CardSet.find_by(name: "M20")
 
-# m20_cards.each do |card|
-#   Card.create()
-# end
+binding.pry
+
+m20_cards.each do |card|
+  colors = card["colors"].join('')
+  Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
+end
 
 binding.pry

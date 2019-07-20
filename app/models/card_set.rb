@@ -1,4 +1,4 @@
-class Card_set < ApplicationRecord
+class CardSet < ApplicationRecord
   validates :name, presence: true
   
   has_many :cards

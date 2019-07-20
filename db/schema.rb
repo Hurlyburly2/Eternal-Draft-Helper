@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_195743) do
+ActiveRecord::Schema.define(version: 2019_07_20_200051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_07_19_195743) do
     t.string "image_url"
     t.bigint "card_set_id"
     t.string "small_image_url"
+    t.string "colors"
+    t.integer "mana_cost"
     t.index ["card_set_id"], name: "index_cards_on_card_set_id"
   end
 
