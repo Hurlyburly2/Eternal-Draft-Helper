@@ -4,7 +4,7 @@ class CreateRating < ActiveRecord::Migration[5.2]
       t.integer :rating, null: false
       
       t.belongs_to :card
-      t.belongs_to :rating
+      t.belongs_to :rating_system
     end
   end
 end

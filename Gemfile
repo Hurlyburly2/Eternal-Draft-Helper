@@ -11,6 +11,8 @@ gem 'google-cloud-vision', '~> 0.28.0'
 gem 'carrierwave', '~> 1.0'
 gem 'fuzzy_match'
 gem 'httparty'
+gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
+gem 'google_drive'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

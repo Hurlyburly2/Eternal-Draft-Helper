@@ -23,7 +23,7 @@ require 'pry'
 # 
 # CardSet.create(name: "M20")
 m20_cardset = CardSet.find_by(name: "M20")
-# 
+# # 
 # m20_cards.each do |card|
 #   colors = ""
 #   if card["colors"].length > 0
@@ -34,8 +34,19 @@ m20_cardset = CardSet.find_by(name: "M20")
 #   Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
 # end
 
-rating_systems = ["Luis Scott-Vargas", "Frank Karsten", "Draftaholics Anonymous", "cricketHunter Limited Community Polling", "Justlolaman and Drifter"]
+#LSV only current contains white, black
 
-rating_systems.each do |system_name|
-  RatingSystem.create(name: system_name, card_set: m20_cardset)
+rating_systems = {
+  "Frank Karsten" => "https://docs.google.com/spreadsheets/d/e/2PACX-1vSPxdaJM8upl-NfusKLSugfEgwHEOqfk464BndB0xvDbOj912dVJ7u0Tq7xNWV-TLNc0MFvPQ8wWgvY/pubhtml"
+}
+
+
+# "Draftaholics Anonymous" => "https://apps.draftaholicsanonymous.com/p1p1/M20",
+# "Luis Scott-Vargas" => "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-gold-artifacts-and-lands/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/, https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/",
+# "cricketHunter Limited Community Polling" => "https://www.mtgcommunityreview.com/core-set-2020",
+# "Justlolaman and Drifter" => "https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"
+
+rating_systems.each do |system|
+  new_system = RatingSystem.create(name: system[0], card_set: m20_cardset, urls: system[1])
+  RatingSystem.get_ratings(new_system)
 end
