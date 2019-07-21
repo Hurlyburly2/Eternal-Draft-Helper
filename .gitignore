@@ -30,3 +30,5 @@ google_json_key.json
 yarn-debug.log*
 .yarn-integrity
 coverage/*
+
+config.json
