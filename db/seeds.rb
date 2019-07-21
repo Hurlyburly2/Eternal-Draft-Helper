@@ -12,24 +12,30 @@
 
 require 'pry'
 
-m20_sources = ["https://api.scryfall.com/cards/search?q=set=m20", "https://api.scryfall.com/cards/search?q=set=m20&page=2"]
-
-m20_cards = []
-m20_sources.each do |source|
-  response = HTTParty.get(source)
-  parsed_response = JSON.parse(response.body)
-  m20_cards += parsed_response["data"]
-end
-
-CardSet.create(name: "M20")
+# m20_sources = ["https://api.scryfall.com/cards/search?q=set=m20", "https://api.scryfall.com/cards/search?q=set=m20&page=2"]
+# 
+# m20_cards = []
+# m20_sources.each do |source|
+#   response = HTTParty.get(source)
+#   parsed_response = JSON.parse(response.body)
+#   m20_cards += parsed_response["data"]
+# end
+# 
+# CardSet.create(name: "M20")
 m20_cardset = CardSet.find_by(name: "M20")
+# 
+# m20_cards.each do |card|
+#   colors = ""
+#   if card["colors"].length > 0
+#     colors = card["colors"].join('')
+#   else
+#     colors = "X"
+#   end
+#   Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
+# end
 
-m20_cards.each do |card|
-  colors = ""
-  if card["colors"].length > 0
-    colors = card["colors"].join('')
-  else
-    colors = "X"
-  end
-  Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
+rating_systems = ["Luis Scott-Vargas", "Frank Karsten", "Draftaholics Anonymous", "cricketHunter Limited Community Polling", "Justlolaman and Drifter"]
+
+rating_systems.each do |system_name|
+  RatingSystem.create(name: system_name, card_set: m20_cardset)
 end
