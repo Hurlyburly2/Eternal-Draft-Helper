@@ -18,7 +18,6 @@ class RatingSystem < ApplicationRecord
     if (rating_system.name == "Frank Karsten")
       data = getFrankKarstenRatings(rating_system)
     end
-    return data
   end
   
   def self.getFrankKarstenRatings(rating_system)
@@ -27,7 +26,7 @@ class RatingSystem < ApplicationRecord
     rows = spreadsheet.rows
     rows[1..rows.length-1].each do |row|
       card = Card.find_by(card_name: row[0])
-      Rating.create(rating: row[4].to_f, card: card, )
+      Rating.create(rating: row[4].to_f, card: card, rating_system: rating_system)
     end
   end
 end
