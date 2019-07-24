@@ -13,10 +13,11 @@ class RatingSystem < ApplicationRecord
     # encoded_url = URI.encode(url)
     # uri = URI.parse(encoded_url)
     # page = Nokogiri::HTML(open(uri))
-    
-    data = {}
-    if (rating_system.name == "Frank Karsten")
-      data = getFrankKarstenRatings(rating_system)
+    urls = JSON.parse(rating_system.urls)
+    urls.each do |url|
+      if (rating_system.name == "Frank Karsten")
+        data = getFrankKarstenRatings(rating_system)
+      end
     end
   end
   

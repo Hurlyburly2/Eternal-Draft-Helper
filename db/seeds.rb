@@ -34,15 +34,15 @@ m20_cards.each do |card|
   Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
 end
 
-#LSV only current contains white, black
+# DONE
 
-rating_systems = {
-  "Frank Karsten" => "https://docs.google.com/spreadsheets/d/e/2PACX-1vSPxdaJM8upl-NfusKLSugfEgwHEOqfk464BndB0xvDbOj912dVJ7u0Tq7xNWV-TLNc0MFvPQ8wWgvY/pubhtml"
+rating_systems = {  
+  "Frank Karsten" => ["https://docs.google.com/spreadsheets/d/e/2PACX-1vSPxdaJM8upl-NfusKLSugfEgwHEOqfk464BndB0xvDbOj912dVJ7u0Tq7xNWV-TLNc0MFvPQ8wWgvY/pubhtml"]
+  # "Luis Scott-Vargas" => ["https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-gold-artifacts-and-lands/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/, https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/"]
 }
 
 
 # "Draftaholics Anonymous" => "https://apps.draftaholicsanonymous.com/p1p1/M20",
-# "Luis Scott-Vargas" => "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-gold-artifacts-and-lands/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/, https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/, https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/",
 # "cricketHunter Limited Community Polling" => "https://www.mtgcommunityreview.com/core-set-2020",
 # "Justlolaman and Drifter" => "https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"
 
