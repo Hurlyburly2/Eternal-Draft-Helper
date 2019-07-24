@@ -15,4 +15,6 @@
   <li>JavaScript image uploader implemented in React</li>
   <li>Image is sent by Rails back-end to Google Vision API</li>
   <li>Text is extracted from image and needs to be processed and matched to cards</li>
+  <li>Card Database is seeded from Scryfall API</li>
+  <li>In Progress: Pulling data from various players' tier lists. Currently two are seeded, using Google Spreadsheet API and Nokogiri Web Crawler</li>
 </ul>
