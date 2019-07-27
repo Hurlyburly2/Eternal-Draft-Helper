@@ -18,12 +18,33 @@ class RatingSystem < ApplicationRecord
       elsif (rating_system.name == "Luis Scott-Vargas")
         getLSVWebCrawl(url, rating_system, url_counter)
         url_counter += 1
+      elsif (rating_system.name == "Draftaholics Anonymous")
+        getDraftAnonWebCrawl(url, rating_system)
       end
     end
     
     if rating_system.name == "Luis Scott-Vargas"
       LSVAddLands(rating_system)
     end
+  end
+  
+  def self.getDraftAnonWebCrawl(url, rating_system)
+    page = ""
+    File.open('lib/data/draftaholicsanonymous.txt').each do |line|
+      page += line
+    end
+    
+    page = page.split("</tr><tr")
+    
+    cards = []
+    page.each do |line|
+      line = line.split('</span></td><td>')[1]
+      line = line.split('</td><td>')
+      line[1] = line[1].match(/\d+/).to_s.to_i
+      cards << line
+    end
+    
+    binding.pry
   end
   
   def self.getLSVWebCrawl(url, rating_system, url_counter)

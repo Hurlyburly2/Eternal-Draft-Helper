@@ -12,41 +12,40 @@
 
 require 'pry'
 
-m20_sources = ["https://api.scryfall.com/cards/search?q=set=m20", "https://api.scryfall.com/cards/search?q=set=m20&page=2"]
-
-m20_cards = []
-m20_sources.each do |source|
-  response = HTTParty.get(source)
-  parsed_response = JSON.parse(response.body)
-  m20_cards += parsed_response["data"]
-end
-
-CardSet.create(name: "M20")
-m20_cardset = CardSet.find_by(name: "M20")
+# m20_sources = ["https://api.scryfall.com/cards/search?q=set=m20", "https://api.scryfall.com/cards/search?q=set=m20&page=2"]
 # 
-m20_cards.each do |card|
-  colors = ""
-  if card["colors"].length > 0
-    colors = card["colors"].join('')
-  else
-    colors = "X"
-  end
-  Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
-end
+# m20_cards = []
+# m20_sources.each do |source|
+#   response = HTTParty.get(source)
+#   parsed_response = JSON.parse(response.body)
+#   m20_cards += parsed_response["data"]
+# end
+
+# CardSet.create(name: "M20")
+m20_cardset = CardSet.find_by(name: "M20")
+# # 
+# m20_cards.each do |card|
+#   colors = ""
+#   if card["colors"].length > 0
+#     colors = card["colors"].join('')
+#   else
+#     colors = "X"
+#   end
+#   Card.create(card_name: card["name"], image_url: card["image_uris"]["normal"], card_set: m20_cardset, small_image_url: card["image_uris"]["small"], colors: colors, mana_cost: card["cmc"])
+# end
 
 rating_systems = {  
-  "Frank Karsten" => ["https://docs.google.com/spreadsheets/d/e/2PACX-1vSPxdaJM8upl-NfusKLSugfEgwHEOqfk464BndB0xvDbOj912dVJ7u0Tq7xNWV-TLNc0MFvPQ8wWgvY/pubhtml"],
-  "Luis Scott-Vargas" => [
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-gold-artifacts-and-lands/",
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/", 
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/", 
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/",
-    "https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/",
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/"]
+  # "Frank Karsten" => ["https://docs.google.com/spreadsheets/d/e/2PACX-1vSPxdaJM8upl-NfusKLSugfEgwHEOqfk464BndB0xvDbOj912dVJ7u0Tq7xNWV-TLNc0MFvPQ8wWgvY/pubhtml"],
+  # "Luis Scott-Vargas" => [
+  #   "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-gold-artifacts-and-lands/",
+  #   "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-white/", 
+  #   "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/", 
+  #   "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/",
+  #   "https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/",
+  #   "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/"],
+  "Draftaholics Anonymous" => ["https://apps.draftaholicsanonymous.com/p1p1/M20"]
 }
 
-
-# "Draftaholics Anonymous" => "https://apps.draftaholicsanonymous.com/p1p1/M20",
 # "cricketHunter Limited Community Polling" => "https://www.mtgcommunityreview.com/core-set-2020",
 # "Justlolaman and Drifter" => "https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"
 
