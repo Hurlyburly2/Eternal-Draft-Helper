@@ -23,7 +23,7 @@ end
 
 CardSet.create(name: "M20")
 m20_cardset = CardSet.find_by(name: "M20")
-# 
+#
 m20_cards.each do |card|
   colors = ""
   if card["colors"].length > 0
@@ -42,11 +42,10 @@ rating_systems = {
     "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-green-and-gold/", 
     "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/",
     "https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/",
-    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/"]
+    "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/"],
+  "Draftaholics Anonymous" => ["https://apps.draftaholicsanonymous.com/p1p1/M20"]
 }
 
-
-# "Draftaholics Anonymous" => "https://apps.draftaholicsanonymous.com/p1p1/M20",
 # "cricketHunter Limited Community Polling" => "https://www.mtgcommunityreview.com/core-set-2020",
 # "Justlolaman and Drifter" => "https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"
 

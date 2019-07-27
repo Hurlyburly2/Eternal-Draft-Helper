@@ -18,12 +18,49 @@ class RatingSystem < ApplicationRecord
       elsif (rating_system.name == "Luis Scott-Vargas")
         getLSVWebCrawl(url, rating_system, url_counter)
         url_counter += 1
+      elsif (rating_system.name == "Draftaholics Anonymous")
+        getDraftAnonWebCrawl(url, rating_system)
       end
     end
     
     if rating_system.name == "Luis Scott-Vargas"
       LSVAddLands(rating_system)
     end
+  end
+  
+  def self.getDraftAnonWebCrawl(url, rating_system)
+    page = ""
+    File.open('lib/data/draftaholicsanonymous.txt').each do |line|
+      page += line
+    end
+    
+    page = page.split("</tr><tr")
+    
+    cards = []
+    highest_rating = 0
+    lowest_rating = 10000
+    page.each do |line|
+      line = line.split('</span></td><td>')[1]
+      line = line.split('</td><td>')
+      line[1] = line[1].match(/\d+/).to_s.to_i
+      if line[1] > highest_rating
+        highest_rating = line[1]
+      end
+      if line[1] < lowest_rating
+        lowest_rating = line[1]
+      end
+      cards << line
+    end
+    
+    cards.each do |card|
+      card[1] = scaleRating(card[1].to_f, 0.0, 5.0, lowest_rating.to_f, highest_rating.to_f).round(2)
+      found_card = Card.find_by(card_name: card[0])
+      Rating.create(rating: card[1].to_f, card: found_card, rating_system: rating_system)
+    end
+  end
+  
+  def self.scaleRating(unscaledNum, minAllowed, maxAllowed, min, max)
+    return (maxAllowed - minAllowed) * (unscaledNum - min) / (max - min) + minAllowed
   end
   
   def self.getLSVWebCrawl(url, rating_system, url_counter)
