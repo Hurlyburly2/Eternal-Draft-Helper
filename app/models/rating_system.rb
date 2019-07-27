@@ -20,11 +20,128 @@ class RatingSystem < ApplicationRecord
         url_counter += 1
       elsif (rating_system.name == "Draftaholics Anonymous")
         getDraftAnonWebCrawl(url, rating_system)
+      elsif (rating_system.name == "Justlolaman")
+        drifter_system = RatingSystem.create(name: "Drifter", card_set: CardSet.find_by(name: "M20"), urls: rating_system.urls)
+        getJustlolamanAndDrifter(rating_system, drifter_system)
       end
     end
     
     if rating_system.name == "Luis Scott-Vargas"
       LSVAddLands(rating_system)
+    end
+  end
+  
+  def self.getJustlolamanAndDrifter(justlolaman_sys, drifter_sys)
+    session = GoogleDrive::Session.from_config("config.json")
+    spreadsheet = session.spreadsheet_by_key("1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688").worksheets[0]
+    
+    ratingsJ = []
+    ratingsD = []
+    
+    row = 1
+    col_white = 1
+    col_blue = 7
+    col_green = 13
+    col_red = 19
+    col_black = 25
+    col_multi = 31
+    bad_matches = ["WHITE", "BLUE", "GREEN", "RED", "BLACK", "MULTICOLOR", "COLORLESS", "UTILITY LANDS", ""]
+    while row < 68
+      if !bad_matches.include?(spreadsheet[row, col_white + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_white]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_white + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_white + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      if !bad_matches.include?(spreadsheet[row, col_blue + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_blue]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_blue + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_blue + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      if row < 45 && !bad_matches.include?(spreadsheet[row, col_green + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_green]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_green + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_green + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      if row < 45 && !bad_matches.include?(spreadsheet[row, col_red + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_red]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_red + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_red + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      if row < 45 && !bad_matches.include?(spreadsheet[row, col_black + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_black]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_black + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_black + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      if row < 45 && !bad_matches.include?(spreadsheet[row, col_multi + 2])
+        current_j_rating = scaleRating(letterToNumber(spreadsheet[row, col_multi]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_d_rating = scaleRating(letterToNumber(spreadsheet[row, col_multi + 1]).to_f, 0.0, 5.0, 0, 12).round(2)
+        current_card = spreadsheet[row, col_multi + 2]
+        ratingsJ << [current_card, current_j_rating]
+        ratingsD << [current_card, current_d_rating]
+      end
+      
+      row += 1
+    end
+    
+    index = 0
+    while index < ratingsJ.length do
+      current_card = ratingsJ[index][0]
+      card = Card.find_by(card_name: current_card)
+      
+      Rating.create(rating: ratingsJ[index][1], card: card, rating_system: justlolaman_sys)
+      Rating.create(rating: ratingsD[index][1], card: card, rating_system: drifter_sys)
+      
+      index += 1
+    end
+  end
+  
+  def self.scaleRating(unscaledNum, minAllowed, maxAllowed, min, max)
+    return (maxAllowed - minAllowed) * (unscaledNum - min) / (max - min) + minAllowed
+  end
+  
+  def self.letterToNumber(letter)
+    case letter
+    when "A+"
+      return 12
+    when "A"
+      return 11
+    when "A-"
+      return 10
+    when "B+"
+      return 9
+    when "B"
+      return 8
+    when "B-"
+      return 7
+    when "C+"
+      return 6
+    when "C"
+      return 5
+    when "C-"
+      return 4
+    when "D+"
+      return 3
+    when "D"
+      return 2
+    when "D-"
+      return 1
+    when "F"
+      return 0
     end
   end
   
@@ -57,10 +174,6 @@ class RatingSystem < ApplicationRecord
       found_card = Card.find_by(card_name: card[0])
       Rating.create(rating: card[1].to_f, card: found_card, rating_system: rating_system)
     end
-  end
-  
-  def self.scaleRating(unscaledNum, minAllowed, maxAllowed, min, max)
-    return (maxAllowed - minAllowed) * (unscaledNum - min) / (max - min) + minAllowed
   end
   
   def self.getLSVWebCrawl(url, rating_system, url_counter)

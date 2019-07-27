@@ -23,7 +23,7 @@ end
 
 CardSet.create(name: "M20")
 m20_cardset = CardSet.find_by(name: "M20")
-#
+
 m20_cards.each do |card|
   colors = ""
   if card["colors"].length > 0
@@ -43,11 +43,11 @@ rating_systems = {
     "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-red/",
     "https://www.channelfireball.com/home/core-set-2020-limited-set-review-black/",
     "https://www.channelfireball.com/articles/core-set-2020-limited-set-review-blue/"],
-  "Draftaholics Anonymous" => ["https://apps.draftaholicsanonymous.com/p1p1/M20"]
+  "Draftaholics Anonymous" => ["https://apps.draftaholicsanonymous.com/p1p1/M20"],
+  "Justlolaman" => ["https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"]
 }
 
 # "cricketHunter Limited Community Polling" => "https://www.mtgcommunityreview.com/core-set-2020",
-# "Justlolaman and Drifter" => "https://docs.google.com/spreadsheets/d/1VFew8_ybQBhg1R3iQHzztPEtYNH4Ma8T8yM9EH5G688/edit?usp=sharing"
 
 rating_systems.each do |system|
   new_system = RatingSystem.create(name: system[0], card_set: m20_cardset, urls: system[1])
