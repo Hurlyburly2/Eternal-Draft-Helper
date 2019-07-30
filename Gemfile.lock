@@ -192,6 +192,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-timeout (0.3.2)
     rails (5.2.3)
       actioncable (= 5.2.3)
       actionmailer (= 5.2.3)
@@ -319,6 +320,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)
+  rack-timeout (= 0.3.2)
   rails (~> 5.2.3)
   rspec-rails
   sass-rails (~> 5.0)
@@ -333,4 +335,4 @@ RUBY VERSION
    ruby 2.4.5p335
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

@@ -14,6 +14,8 @@ gem 'httparty'
 gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 gem 'google_drive'
 
+gem 'rack-timeout', '0.3.2'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
