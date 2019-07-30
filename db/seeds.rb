@@ -10,8 +10,6 @@
 #CALL THIS TO GET CARDS
 # https://api.scryfall.com/cards/search?q=set=m20
 
-require 'pry'
-
 m20_sources = ["https://api.scryfall.com/cards/search?q=set=m20", "https://api.scryfall.com/cards/search?q=set=m20&page=2"]
 
 m20_cards = []
