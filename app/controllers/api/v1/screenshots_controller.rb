@@ -9,6 +9,7 @@ class Api::V1::ScreenshotsController < ApplicationController
   def create
     #USE DURING PRODUCTION (AND FOR TESTING THE ACTUAL API)
     vision = Google::Cloud::Vision.new
+    # (api_key: ENV('GOOGLE_API_KEY'))
     card_text = vision.image params["image"].tempfile.path
     card_text = card_text.text.text
     
