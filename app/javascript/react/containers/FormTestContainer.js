@@ -5,7 +5,7 @@ class FormTestContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      returned_text: ""
+      returned_text: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -41,7 +41,13 @@ class FormTestContainer extends Component {
     let handleSubmitForm = () => {
       this.submitForm();
     }
-    let returned_text = <div>{this.state.returned_text}</div>
+    
+    let outputText = ""
+    if (this.state.returned_text != null) {
+      outputText = this.state.returned_text.map((card_name) => {
+        return <p>{card_name}</p>
+      })
+    }
     
     return(  
       <div>
@@ -52,7 +58,7 @@ class FormTestContainer extends Component {
                  accept="image/*" 
           />
           <input type="submit" value="Submit" />
-          {returned_text}
+          {outputText}
         </form>
         
         <div id="results" />
