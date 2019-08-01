@@ -17,8 +17,6 @@ http://fathomless-everglades-23302.herokuapp.com
 
 <h3>Planned Features</h3>
 <ul>
-  <li>Upload of a screenshot from an open draft pack from the games Eternal or Magic Arena</li>
-  <li>Text is extracted from the image using Google Vision API</li>
   <li>Extracted text is compared with card pool to pull the data for cards in your pack</li>
   <li>App will present you which cards are best/worst picks according to various community tier lists</li>
   <li>D3 graphing information for expansions and individual card packs</li>
