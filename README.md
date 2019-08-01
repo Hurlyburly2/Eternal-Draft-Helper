@@ -11,7 +11,7 @@ http://fathomless-everglades-23302.herokuapp.com
   <li>Image is sent by Rails back-end to Google Vision API</li>
   <li>Card Database is seeded from Scryfall API</li>
   <li>Data is pulled from players' tier lists via Google Spreadsheets, web crawlers, and from text files then seeded into the Postgres database</li>
-  <li>Text is extracted from image. It is processed and matched to the database's card names using a fuzzy matcher to to Google Vision OCR imperfection</li>
+  <li>Text is extracted from image. It is processed and matched to the database's card names using a fuzzy matcher due to Google Vision OCR imperfection</li>
   <li>All API connections are authenticated and functional on Heroku. Currently you can upload an image and it will return the card names from the image. Here is a sample image to test it out with and see the result: https://drive.google.com/file/d/12Biqw3pjinbcWVtN5bGNpUhppgo2QyFR/</li>
 </ul>
 
