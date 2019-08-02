@@ -1,0 +1,35 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+
+class PackRaterMain extends Component {
+  constructor(props) {
+    super(props)
+  }
+  
+  render() {
+    return(
+      <div className="container">
+        <div className="row">
+          <div className="col-md2-1">
+          </div>
+          <div className="col-m2-10">
+            <h1>Magic Arena Draft Helper</h1>
+            <h3>Early Development</h3>
+            
+            <ul>
+              <li>
+                <a href="/drafts">Rate a Draft Pack!</a>
+              </li>
+              <li>Expansion Statistics</li>
+            </ul>
+            
+          </div>
+          <div className="col-md-1">
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default PackRaterMain
