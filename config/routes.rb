@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :homes, only: [:index, :create]
   resources :screenshots, only: [:create]
   
+  resources :drafts, only: [:index]
+  
   namespace :api do
     namespace :v1 do
       resources :screenshots, only: [:index, :create]
