@@ -1,16 +1,19 @@
 import React from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
 
-import Main from '../containers/Main'
+import LandingPage from '../containers/LandingPage'
 import FormContainer from '../containers/FormContainer'
 import PackRaterMain from '../containers/PackRaterMain'
 
 export const App = (props) => {
   return (
-    <Router history={browserHistory}>
-      <Route path = '/' component={Main} />
-      <Route path = '/drafts' component={PackRaterMain} />
-    </Router>
+    <Provider store={props.store}>
+      <Router history={browserHistory}>
+        <Route path = '/' component={LandingPage} />
+        <Route path = '/drafts' component={PackRaterMain} />
+      </Router>
+    </Provider>
   )
 }
 
