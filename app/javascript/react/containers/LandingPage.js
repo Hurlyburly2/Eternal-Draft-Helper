@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-class PackRaterMain extends Component {
+class LandingPage extends Component {
   constructor(props) {
     super(props)
   }
@@ -32,4 +32,4 @@ class PackRaterMain extends Component {
   }
 }
 
-export default PackRaterMain
+export default LandingPage

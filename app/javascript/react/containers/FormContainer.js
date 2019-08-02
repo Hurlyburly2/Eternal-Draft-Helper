@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
+import { connect } from 'react-redux'
+import { postImage } from '../modules/packs'
+
 class FormContainer extends Component {  
   constructor(props) {
     super(props)
-    this.state = {
-      returned_text: null
-    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
@@ -15,26 +15,7 @@ class FormContainer extends Component {
     const form = document.querySelector("#my_form");
     const formData = new FormData(form);
     
-    fetch('/api/v1/screenshots', {
-      method: "POST",
-      body: formData,
-      credentials: 'same-origin'
-    })
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage)
-        throw error
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      this.setState({
-        returned_text: response.returned_text
-      })
-    })
+    this.props.postImage(formData)
   }
   
   render() {
@@ -43,8 +24,8 @@ class FormContainer extends Component {
     }
     
     let outputText = ""
-    if (this.state.returned_text != null) {
-      outputText = this.state.returned_text.map((card_name) => {
+    if (this.props.returnedText != null) {
+      outputText = this.props.returnedText.map((card_name) => {
         return <p>{card_name}</p>
       })
     }
@@ -67,4 +48,19 @@ class FormContainer extends Component {
   }
 }
 
-export default FormContainer;
+const mapStateToProps = (state) => {
+  return {
+    returnedText: state.packs.returnedText
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postImage: (image) => dispatch(postImage(image))
+  }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FormContainer)
