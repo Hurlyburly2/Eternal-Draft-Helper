@@ -5,6 +5,9 @@ http://fathomless-everglades-23302.herokuapp.com
 
 <h3>In Progress...</h3>
 
+<h3>Technologies:</h3>
+Ruby on Rails, React.js, Redux, Google Vision, Google Spreadsheets, Nokogiri
+
 <h3>Current Functionality:</h3>
 <ul>
   <li>JavaScript image uploader implemented in React</li>
@@ -17,9 +20,10 @@ http://fathomless-everglades-23302.herokuapp.com
 
 <h3>Planned Features</h3>
 <ul>
-  <li>Extracted text is compared with card pool to pull the data for cards in your pack</li>
+  <li>Extracted text is compared with card pool to pull the data for cards in your pack (currently only names are sent forward)</li>
   <li>App will present you which cards are best/worst picks according to various community tier lists</li>
   <li>D3 graphing information for expansions and individual card packs</li>
+  <li>Random pack generator just for kicks?</li>
 </ul>
 
 
