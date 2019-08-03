@@ -4,7 +4,7 @@ class Screenshot < ApplicationRecord
   # mount_uploader :url, DraftImageUploader
   mount_uploader :draft_photo, DraftPhotoUploader
   
-  attr_reader :card_text
+  attr_reader :card_text, :bad_matches
   
   def initialize(card_text)
     @card_text = card_text
