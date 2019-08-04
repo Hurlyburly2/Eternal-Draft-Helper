@@ -1,7 +1,7 @@
 import { displayAlertMessage } from './alertMessage.js'
 
 const initialState = {
-  returnedText: null,
+  returnedCards: null,
   isFetching: false
 }
 
@@ -15,7 +15,7 @@ const packs = (state = initialState, action) => {
     case POST_IMAGE_REQUEST_SUCCESS:
       return {
         ...state,
-        returnedText: action.returnedText,
+        returnedCards: action.returnedCards,
         isFetching: false
       }
     case POST_IMAGE_REQUEST_FAILURE:
@@ -36,10 +36,10 @@ const postImageRequest = () => {
 }
 
 const POST_IMAGE_REQUEST_SUCCESS = 'POST_IMAGE_REQUEST_SUCCESS'
-const postImageRequestSuccess = returnedText => {
+const postImageRequestSuccess = returnedCards => {
   return {
     type: POST_IMAGE_REQUEST_SUCCESS,
-    returnedText
+    returnedCards
   }
 }
 
@@ -71,7 +71,7 @@ const postImage = image => {
     .then(response => response.json())
     .then(response => {
       if (!response.error) {
-        dispatch(postImageRequestSuccess(response.returned_text))
+        dispatch(postImageRequestSuccess(response.returned_cards))
       }
     })
   }

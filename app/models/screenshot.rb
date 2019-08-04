@@ -20,6 +20,40 @@ class Screenshot < ApplicationRecord
   def parse_text
     split_text = @card_text.split("\n")
     
+    matched_names = find_matched_names(split_text)
+    return get_card_data(matched_names)
+  end
+  
+  def get_card_data(matched_names)
+    card_objects = {}
+    matched_names.each do |card_name|
+      current_card = Card.find_by(card_name: card_name)
+      found_ratings = current_card.ratings
+      current_card_ratings = {}
+      found_ratings.each do |rating|
+        current_card_ratings[rating.rating_system.id] = {
+                                      rating_id: rating.id,
+                                      rating: rating.rating,
+                                      rating_system_id: rating.rating_system.id,
+                                      rating_system_name: rating.rating_system.name
+                                    }
+      end
+      card_objects[current_card[:id]] = {
+                                          card: {
+                                                    id: current_card.id,
+                                                    name: current_card.card_name,
+                                                    image_url: current_card.image_url,
+                                                    small_image_url: current_card.small_image_url,
+                                                    colors: current_card.colors.split(''),
+                                                    mana_cost: current_card.mana_cost
+                                                }, 
+                                          ratings: current_card_ratings
+                                        }
+    end
+    return card_objects
+  end
+  
+  def find_matched_names(split_text)
     current_cardset = find_expansion(split_text)
     card_names = current_cardset.cards.pluck(:card_name)
     matches = []
@@ -33,6 +67,7 @@ class Screenshot < ApplicationRecord
         end
       end
     end
+    
     return matches
   end
   
