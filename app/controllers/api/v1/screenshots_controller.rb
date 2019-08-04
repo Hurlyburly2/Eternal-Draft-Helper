@@ -19,7 +19,7 @@ class Api::V1::ScreenshotsController < ApplicationController
     returned_cards = screenshot.parse_text
     
     render json: {
-      returned_text: returned_cards
+      returned_cards: returned_cards
     }
   end
 end
