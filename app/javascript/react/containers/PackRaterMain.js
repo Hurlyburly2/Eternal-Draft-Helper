@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import FormContainer from './FormContainer'
 import PackResultContainer from './PackResultContainer'
+import Button from '../components/Button'
 
 class PackRaterMain extends Component {
   constructor(props) {
@@ -25,6 +26,10 @@ class PackRaterMain extends Component {
           <div className="col-md2-1">
           </div>
           <div className="col-m2-10">
+            <Button
+              text="Back"
+              link="/"
+            />
             {currentContainer}
           </div>
           <div className="col-md-1">
