@@ -1,3 +1,9 @@
+<h1>Important Note:</h1>
+This version of the application is defunct as of 8/9/2019. The version that is now being worked on and is currently live can be found at: https://github.com/Hurlyburly2/MagicArena-DraftHelper/
+
+Anything below this message is from the last commit of this app, and left up for purposes of viewing development history.
+
+<div style="color:lightgrey">
 <h2>Eternal/MTG: Arena Draft Helper</h2>
 
 <h3>Current Live App:</h3>
@@ -25,5 +31,6 @@ Ruby on Rails, React.js, Redux, Google Vision, Google Spreadsheets, Nokogiri
   <li>D3 graphing information for expansions and individual card packs</li>
   <li>Random pack generator just for kicks?</li>
 </ul>
+</div>
 
 
