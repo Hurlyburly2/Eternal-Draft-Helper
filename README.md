@@ -7,7 +7,7 @@ Anything below this message is from the last commit of this app, and left up for
 <h2>Eternal/MTG: Arena Draft Helper</h2>
 
 <h3>Current Live App:</h3>
-http://fathomless-everglades-23302.herokuapp.com
+http://magicarenahelper.herokuapp.com/
 
 <h3>In Progress...</h3>
 
